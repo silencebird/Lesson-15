@@ -1,0 +1,78 @@
+
+////Пробывал добраться до масива map, для проверки следующего шага, но не получилось///////
+
+
+///////////1//////////
+
+south();
+south();
+
+
+/////////2///////////
+
+for(i=0; i < 16; i++){
+east;
+}
+
+
+/////////3///////////
+
+for(i=0; i < 7; i++){
+south();
+east();
+}
+
+////////4///////////
+
+for(i=0; i < 3; i++){
+for(j=0; j < i+1; j++){
+south();
+}
+//Проверка какой поворот//
+j = ( i+3 % 3 == 0 ) ? 3 : i;
+for(k=0; k < j; k++){
+east();
+}
+}
+south();
+
+//////////5//////////
+
+for (i=0 ; i < 9; i++){
+switch (i){
+  case 0:
+  case 8:
+    j=6;
+    break;
+  case 1:
+  case 2:
+  case 4:
+  case 6:
+    j=2;
+    break;
+  case 3:
+  case 5:
+    j=3;
+    break;
+  case 7:
+    j=5;
+}
+switch (i){
+  case 0:
+  case 8:
+    for(k=0; k < j; k++){east();}
+    break;
+  case 1:
+  case 3:
+  case 7:
+    for(k=0; k < j; k++){south();}
+    break;
+  case 2:
+  case 4:
+  case 6:
+    for(k=0; k < j; k++){west();}
+    break;
+  case 5:
+    for(k=0; k < j; k++){north();}
+}
+}
