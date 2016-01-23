@@ -1,17 +1,17 @@
-
+﻿
 ////Пробывал добраться до масива map, для проверки следующего шага, но не получилось///////
 
 
 ///////////1//////////
 
-south();
-south();
+north();
+north();
 
 
 /////////2///////////
 
 for(i=0; i < 16; i++){
-east;
+east();
 }
 
 
@@ -24,55 +24,29 @@ east();
 
 ////////4///////////
 
-for(i=0; i < 3; i++){
-for(j=0; j < i+1; j++){
-south();
+while ((isFree('south')) || (isFree('east')) ){
+if (isFree('south')) {south(); continue;}
+if (isFree('east')) {east(); continue;}
 }
-//Проверка какой поворот//
-j = ( i+3 % 3 == 0 ) ? 3 : i;
-for(k=0; k < j; k++){
-east();
-}
-}
-south();
+restart();
 
 //////////5//////////
+var flag1 = true;
+var flag2 = true;
 
-for (i=0 ; i < 9; i++){
-switch (i){
-  case 0:
-  case 8:
-    j=6;
-    break;
-  case 1:
-  case 2:
-  case 4:
-  case 6:
-    j=2;
-    break;
-  case 3:
-  case 5:
-    j=3;
-    break;
-  case 7:
-    j=5;
+while ( (isFree('south')) || (isFree('north')) || (isFree('east'))) {
+flag1 = true;
+flag2 = true;
+while ( (isFree('south')) || (isFree('north')) ){
+if ((isFree('south'))&& flag1) {south(); flag2 = false; continue; } else {flag1 = false;} 
+if ((isFree('north')) && flag2) {north(); continue;}
+break;
 }
-switch (i){
-  case 0:
-  case 8:
-    for(k=0; k < j; k++){east();}
-    break;
-  case 1:
-  case 3:
-  case 7:
-    for(k=0; k < j; k++){south();}
-    break;
-  case 2:
-  case 4:
-  case 6:
-    for(k=0; k < j; k++){west();}
-    break;
-  case 5:
-    for(k=0; k < j; k++){north();}
+flag1 = true;
+flag2 = true;
+while ( (isFree('east')) || (isFree('west')) ){
+if ((isFree('east')) && flag1) {east();  flag2 = false; continue;} else {flag1 = false;}
+if ((isFree('west')) && flag2) {west(); continue;}
+break;
 }
 }
